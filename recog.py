@@ -2,11 +2,12 @@
 import numpy as np
 import chainer
 import chainer.functions as F
-import cv2
+from PIL import Image
 
 def recognise():
-    img = cv2.imread("./uploads/image.png", 0).astype(np.float32)
-    X = cv2.resize(img, (28,28))
+
+    img = Image.open("./uploads/image.png").convert("L").resize((28,28))
+    X = np.array(img).astype(np.float32)
     X = X.reshape((1,1,28,28))
 
     import pickle
