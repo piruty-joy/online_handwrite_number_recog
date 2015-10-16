@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+    <p>
+        <input type="button" id="erase" value="消去" />
+        <input type="button" id="save" value="識別" />
+        <span id="result"></span>
+    </p>
+    <canvas id="mycanvas" width="240" height="240">
+        Sorry, Your Browser does not use canvas.
+    </canvas>
+    <div id="gallery">
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+{% endblock %}
