@@ -1,9 +1,9 @@
 import os
+import io
 import json
 import recog
-from pathlib import Path
 from flask import Flask, render_template, request
-from werkzeug import secure_filename
+from PIL import Image
 
 app = Flask(__name__)
 
@@ -16,16 +16,12 @@ def upload():
     file = request.files['image']
     result = {}
     if file:
-        filename = secure_filename(file.name) + '.png'
-        file.save(os.path.join('uploads', filename))
-        result.update({"saved": True})
-        result.update({"file": filename})
-        result.update({"recog": recog.recognise()})
+        img = Image.open(io.BytesIO(file.stream.read()))
+        result.update({"passed": True})
+        result.update({"recog": recog.recognise(img)})
     else:
-        result.update({"saved": False})
+        result.update({"passed": False})
     return json.dumps(result)
 
 if __name__ == '__main__':
-    if not Path('./uploads').exists():
-        Path('./uploads/').mkdir()
     app.run()

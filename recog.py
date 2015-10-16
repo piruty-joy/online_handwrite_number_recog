@@ -4,9 +4,9 @@ import chainer
 import chainer.functions as F
 from PIL import Image
 
-def recognise():
+def recognise(img):
 
-    img = Image.open("./uploads/image.png").convert("L").resize((28,28))
+    img = img.convert("L").resize((28,28))
     X = np.array(img).astype(np.float32)
     X = X.reshape((1,1,28,28))
 

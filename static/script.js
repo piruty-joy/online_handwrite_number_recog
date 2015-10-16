@@ -63,7 +63,7 @@ $('#save').click(function() {
         data: formdata,
         success: function(result) {
             console.dir(result);
-            if (!result.saved) return;
+            if (!result.passed) return;
 
             $('#result').text("その数字は " + result.recog + " ですね？");
             var img = $('<img>').attr({
