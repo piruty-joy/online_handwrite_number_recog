@@ -1,10 +1,19 @@
 var canvas = document.getElementById('mycanvas');
-// if (!canvas || !canvas.getContext) return false;
+if (!canvas || !canvas.getContext) {
+    $("#save").prop("disabled", true);
+    $("#erace").prop("disabled", true);
+}
 var ctx = canvas.getContext('2d');
 ctx.lineWidth = 10;
 ctx.strokeStyle = "white";
 ctx.fillStyle = 'rgb(0,0,0)';
 ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+var gif = $('<img>').attr({
+    width: 50,
+    height: 50,
+    src: '../static/gif-load.gif'
+});
 
 var startX, startY, x, y, borderWidth = 10, isDrawing = false;
 $('#mycanvas').mousedown(function(e) {
@@ -43,7 +52,9 @@ $('#save').click(function() {
     var image = canvas.toDataURL("image/png")
     var blob, i, dataLen;
 
-    $('#result').text("");
+    $('#gallery').append(gif.attr("id", "loading"));
+
+    $("#save").prop("disabled", true);
 
     // blobの生成
     for( i = 0, dataLen = data.length; i < dataLen; i++){
@@ -65,17 +76,23 @@ $('#save').click(function() {
             console.dir(result);
             if (!result.passed) return;
 
+            $("#result").empty();
             $('#result').text("その数字は " + result.recog + " ですね？");
+            $("#save").prop("disabled", false);
             var img = $('<img>').attr({
                 width: 100,
                 height: 50,
                 src: canvas.toDataURL()
             });
+            $('img').remove("#loading");
             $('#gallery').append(img.addClass('thumbnail'));
             ctx.fillStyle = 'rgb(0,0,0)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         },
         error: function() {
+            $('img').remove("#loading");
+            $('#result').text("通信に失敗しました。。。");
+            $("#save").prop("disabled", false);
             console.dir("error");
         }
     });
