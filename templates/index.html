@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block body %}
     <p>
-        <input type="button" id="erase" value="消去" />
-        <input type="button" id="save" value="識別" />
+        <input type="button" id="erase" value="消去" class="btn btn-primary" />
+        <input type="button" id="save" value="識別" class="btn btn-primary" />
         <span id="result"></span>
     </p>
     <canvas id="mycanvas" width="240" height="240">
@@ -10,5 +10,5 @@
     </canvas>
     <div id="gallery"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="{{url_for('static', filename='script.js')}}"></script>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
 {% endblock %}

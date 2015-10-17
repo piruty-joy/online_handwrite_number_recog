@@ -12,7 +12,7 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 var gif = $('<img>').attr({
     width: 50,
     height: 50,
-    src: '../static/gif-load.gif'
+    src: '../static/images/gif-load.gif'
 });
 
 var startX, startY, x, y, borderWidth = 10, isDrawing = false;
