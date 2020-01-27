@@ -8,7 +8,7 @@
 
 ## What is used??
 
-・Python 3.4.3
+・Python 3.7
 ・jQuery 2.1.4
 ・bootstrap 3.3.5
 
